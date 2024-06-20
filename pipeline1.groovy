@@ -20,7 +20,20 @@ pipeline {
 
         stage('Upload to Nexus') {
             steps {
-                 nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: 'target/web.jar', type: 'jar']], credentialsId: 'nexuskey', groupId: 'com.mycompany.app', nexusUrl: '54.167.126.21:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.0-SNAPSHOT'
+                script {
+                    nexusArtifactUploader(
+                        artifacts: [
+                            [artifactId: 'my-app', classifier: '', file: 'target/web.jar', type: 'jar']
+                        ],
+                        credentialsId: 'nexuskey',
+                        groupId: 'com.mycompany.app',
+                        nexusUrl: 'http://54.167.126.21:8081/nexus',
+                        nexusVersion: 'nexus2',
+                        protocol: 'http',
+                        repository: 'releases',
+                        version: "${params.VERSION}-SNAPSHOT"
+                    )
+                }
             }
         }
 

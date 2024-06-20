@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Build application code'
+                sh 'mvn package -f pox.xml'
             }
         }
         stage('Deploy') {

@@ -9,7 +9,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn package -f pox.xml'
+                script {
+                    if (isUnix()) {
+                        sh 'mvn package -f pom.xml'
+                    } else {
+                        bat 'mvn package -f pom.xml'
+                    }
+                }
             }
         }
         stage('Deploy') {

@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    parameters{
+        choice{name:'VERSION',choice:['1.0','1.1','1.2']}
+        boolenparam(name: 'durga',defaultValue: true)
+    }
 
     stages {
         stage('Clone application code') {

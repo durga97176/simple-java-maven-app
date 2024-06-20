@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone application code') {
             steps {
-                echo 'cloning application code from GITHUB'
+                git 'https://github.com/durga97176/simple-java-maven-app.git'
             }
         }
         stage('Build') {
